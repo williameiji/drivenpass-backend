@@ -9,6 +9,8 @@ export async function sendNotes(id: number) {
 export async function findNoteById(id: number, userId: number) {
 	const note = await noteRepository.getNoteById(id);
 
+	if (!note) throw { code: "NotFound", message: "Nota não encontrada!" };
+
 	if (note.userId !== userId)
 		throw {
 			code: "Anauthorized",
@@ -32,6 +34,8 @@ export async function newNote(data: noteRepository.TypeNewNote) {
 
 export async function removeNote(id: number, userId: number) {
 	const note = await noteRepository.getNoteById(id);
+
+	if (!note) throw { code: "NotFound", message: "Nota não encontrada!" };
 
 	if (note.userId !== userId)
 		throw {

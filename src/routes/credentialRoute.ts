@@ -1,6 +1,8 @@
 import { Router } from "express";
 import verifyToken from "../middlewares/validators/verifyToken.js";
 import * as credentialController from "../controllers/credentialController.js";
+import { validateSchema } from "../middlewares/validators/schemasValidator.js";
+import credentialSchema from "../middlewares/schemas/credentialSchema.js";
 
 const credentialRoute = Router();
 
@@ -19,6 +21,7 @@ credentialRoute.get(
 credentialRoute.post(
 	"/credentials",
 	verifyToken,
+	validateSchema(credentialSchema),
 	credentialController.newCredential
 );
 

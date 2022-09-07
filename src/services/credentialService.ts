@@ -12,6 +12,9 @@ export async function findCredentialById(id: number, userId: number) {
 
 	const credential = await credentialRepository.getCredentialById(id);
 
+	if (!credential)
+		throw { code: "NotFound", message: "Credencial não encontrada!" };
+
 	if (credential.userId !== userId)
 		throw {
 			code: "Anauthorized",
@@ -45,6 +48,9 @@ export async function newCredential(
 
 export async function removeCredential(id: number, userId: number) {
 	const credential = await credentialRepository.getCredentialById(id);
+
+	if (!credential)
+		throw { code: "NotFound", message: "Credencial não encontrada!" };
 
 	if (credential.userId !== userId)
 		throw {

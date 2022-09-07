@@ -12,6 +12,8 @@ export async function findWifiById(id: number, userId: number) {
 
 	const wifi = await wifiRepository.getWifiById(id);
 
+	if (!wifi) throw { code: "NotFound", message: "Wi-fi não encontrado!" };
+
 	if (wifi.userId !== userId)
 		throw {
 			code: "Anauthorized",
@@ -32,6 +34,8 @@ export async function newWifi(data: wifiRepository.TypeNewWifi) {
 
 export async function removeWifi(id: number, userId: number) {
 	const wifi = await wifiRepository.getWifiById(id);
+
+	if (!wifi) throw { code: "NotFound", message: "Wi-fi não encontrado!" };
 
 	if (wifi.userId !== userId)
 		throw {

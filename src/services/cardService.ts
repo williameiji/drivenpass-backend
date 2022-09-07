@@ -12,6 +12,8 @@ export async function findCardById(id: number, userId: number) {
 
 	const card = await cardRepository.getCardById(id);
 
+	if (!card) throw { code: "NotFound", message: "Cartão não encontrado!" };
+
 	if (card.userId !== userId)
 		throw {
 			code: "Anauthorized",
@@ -45,6 +47,8 @@ export async function newCard(data: cardRepository.TypeNewCard) {
 
 export async function removeCard(id: number, userId: number) {
 	const card = await cardRepository.getCardById(id);
+
+	if (!card) throw { code: "NotFound", message: "Cartão não encontrado!" };
 
 	if (card.userId !== userId)
 		throw {
