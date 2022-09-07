@@ -8,7 +8,7 @@ const credentialSchema = joi.object({
 			/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
 		)
 		.required(),
-	user: joi.string().required(),
+	name: joi.string().required(),
 	password: joi.string().required(),
 });
 
