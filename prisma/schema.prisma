@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cards {
+  id        Int     @id(map: "cards_pk") @default(autoincrement())
+  userId    Int
+  title     String  @unique @db.VarChar(255)
+  number    String  @db.VarChar(255)
+  name      String  @db.VarChar(255)
+  cvc       String  @db.VarChar(255)
+  date      String  @db.VarChar(255)
+  isVirtual Boolean @default(false)
+  type      String  @db.VarChar(255)
+  users     users   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cards_fk0")
+}
+
+model credentials {
+  id       Int    @id(map: "credentials_pk") @default(autoincrement())
+  userId   Int
+  title    String @unique @db.VarChar(255)
+  url      String @db.VarChar(255)
+  name     String @db.VarChar(255)
+  password String @db.VarChar(255)
+  users    users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "credentials_fk0")
+}
+
+model notes {
+  id     Int    @id(map: "notes_pk") @default(autoincrement())
+  userId Int
+  title  String @unique @db.VarChar(255)
+  note   String @db.VarChar(255)
+  users  users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "notes_fk0")
+}
+
+model users {
+  id          Int           @id(map: "users_pk") @default(autoincrement())
+  email       String        @unique @db.VarChar(255)
+  password    String        @db.VarChar(255)
+  cards       cards[]
+  credentials credentials[]
+  notes       notes[]
+  wifis       wifis[]
+}
+
+model wifis {
+  id       Int    @id(map: "wifis_pk") @default(autoincrement())
+  userId   Int
+  title    String @db.VarChar(255)
+  name     String @db.VarChar(255)
+  password String @db.VarChar(255)
+  users    users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "wifis_fk0")
+}
