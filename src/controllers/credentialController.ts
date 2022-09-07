@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import * as credentialService from "../services/credentialService.js";
 
-export async function sendCredentials(req: Request, res: Response) {
+export async function sendCredentialsFromUser(req: Request, res: Response) {
 	const { id } = res.locals.tokenDecoded;
 
-	const credentials = await credentialService.sendCredentials(id);
+	const credentials = await credentialService.sendCredentialsFromUser(id);
 
 	res.status(200).send(credentials);
 }

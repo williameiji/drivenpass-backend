@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import * as wifiService from "../services/wifiService.js";
 
-export async function sendWifis(req: Request, res: Response) {
+export async function sendWifisFromUser(req: Request, res: Response) {
 	const { id } = res.locals.tokenDecoded;
 
-	const wifis = await wifiService.sendWifis(id);
+	const wifis = await wifiService.sendWifisFromUser(id);
 
 	res.status(200).send(wifis);
 }

@@ -6,7 +6,7 @@ import cardSchema from "../middlewares/schemas/cardSchema.js";
 
 const cardRoute = Router();
 
-cardRoute.get("/cards", verifyToken, cardController.sendCards);
+cardRoute.get("/cards", verifyToken, cardController.sendCardsFromUser);
 
 cardRoute.get("/cards/:id", verifyToken, cardController.sendCardById);
 

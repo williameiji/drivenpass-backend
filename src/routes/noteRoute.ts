@@ -6,7 +6,7 @@ import noteSchema from "../middlewares/schemas/noteSchema.js";
 
 const noteRoute = Router();
 
-noteRoute.get("/notes", verifyToken, noteController.sendNotes);
+noteRoute.get("/notes", verifyToken, noteController.sendNotesFromUser);
 
 noteRoute.get("/notes/:id", verifyToken, noteController.sendNoteById);
 

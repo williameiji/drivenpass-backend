@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import * as noteService from "../services/noteService.js";
 
-export async function sendNotes(req: Request, res: Response) {
+export async function sendNotesFromUser(req: Request, res: Response) {
 	const { id } = res.locals.tokenDecoded;
 
-	const notes = await noteService.sendNotes(id);
+	const notes = await noteService.sendNotesFromUser(id);
 
 	res.status(200).send(notes);
 }

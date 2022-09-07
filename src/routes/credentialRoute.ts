@@ -9,7 +9,7 @@ const credentialRoute = Router();
 credentialRoute.get(
 	"/credentials",
 	verifyToken,
-	credentialController.sendCredentials
+	credentialController.sendCredentialsFromUser
 );
 
 credentialRoute.get(

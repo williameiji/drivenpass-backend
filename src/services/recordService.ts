@@ -1,14 +1,14 @@
-import { sendCards } from "./cardService.js";
-import { sendCredentials } from "./credentialService.js";
-import { sendNotes } from "./noteService.js";
-import { sendWifis } from "./wifiService.js";
+import { sendCardsFromUser } from "./cardService.js";
+import { sendCredentialsFromUser } from "./credentialService.js";
+import { sendNotesFromUser } from "./noteService.js";
+import { sendWifisFromUser } from "./wifiService.js";
 
 export async function sendCountRecords(id: number) {
 	const records = await Promise.all([
-		sendCredentials(id),
-		sendNotes(id),
-		sendCards(id),
-		sendWifis(id),
+		sendCredentialsFromUser(id),
+		sendNotesFromUser(id),
+		sendCardsFromUser(id),
+		sendWifisFromUser(id),
 	])
 		.then((valores) => {
 			return {

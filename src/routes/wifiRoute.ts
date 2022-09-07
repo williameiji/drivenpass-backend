@@ -6,7 +6,7 @@ import wifiSchema from "../middlewares/schemas/wifiSchema.js";
 
 const wifiRoute = Router();
 
-wifiRoute.get("/wifis", verifyToken, wifiController.sendWifis);
+wifiRoute.get("/wifis", verifyToken, wifiController.sendWifisFromUser);
 
 wifiRoute.get("/wifis/:id", verifyToken, wifiController.sendWifiById);
 
