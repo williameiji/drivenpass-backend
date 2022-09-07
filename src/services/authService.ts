@@ -7,12 +7,11 @@ dotenv.config();
 
 export async function login(email: string, password: string) {
 	const user = await lookForUser(email);
-	console.log(user);
 
 	if (user && bcrypt.compareSync(password, user.password)) {
 		const token = jwt.sign(
 			{
-				id: email,
+				id: user.id,
 			},
 			process.env.SECRET_KEY_TOKEN,
 			{ expiresIn: 20 * 60 }
