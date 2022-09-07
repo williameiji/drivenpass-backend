@@ -27,10 +27,11 @@ export async function newCredential(
 	const cryptr = new Cryptr(process.env.SECRET);
 
 	const credential = await credentialRepository.getCredentialByTitle(
+		data.userId,
 		data.title
 	);
 
-	if (credential)
+	if (credential.length)
 		throw {
 			code: "Conflict",
 			message: "Já existe uma credencial com esse nome!",

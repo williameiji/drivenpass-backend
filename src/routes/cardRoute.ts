@@ -8,4 +8,8 @@ cardRoute.get("/cards", verifyToken, cardController.sendCards);
 
 cardRoute.get("/cards/:id", verifyToken, cardController.sendCardById);
 
+cardRoute.post("/cards", verifyToken, cardController.newCard);
+
+cardRoute.delete("/cards/:id", verifyToken, cardController.removeCard);
+
 export default cardRoute;

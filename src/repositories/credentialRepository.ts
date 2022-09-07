@@ -11,8 +11,8 @@ export async function getCredentialById(id: number) {
 	return await prisma.credentials.findUnique({ where: { id } });
 }
 
-export async function getCredentialByTitle(title: string) {
-	return await prisma.credentials.findUnique({ where: { title } });
+export async function getCredentialByTitle(userId: number, title: string) {
+	return await prisma.credentials.findMany({ where: { title, userId } });
 }
 
 export async function insert(newCredential: TypeNewCredential) {

@@ -17,3 +17,21 @@ export async function sendNoteById(req: Request, res: Response) {
 
 	res.status(200).send(notes);
 }
+
+export async function newNote(req: Request, res: Response) {
+	const data = req.body;
+	const { id: userId } = res.locals.tokenDecoded;
+
+	await noteService.newNote({ ...data, userId });
+
+	res.sendStatus(201);
+}
+
+export async function removeNote(req: Request, res: Response) {
+	const { id: userId } = res.locals.tokenDecoded;
+	const { id } = req.params;
+
+	await noteService.removeNote(Number(id), userId);
+
+	res.sendStatus(202);
+}
