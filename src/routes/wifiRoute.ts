@@ -8,4 +8,8 @@ wifiRoute.get("/wifis", verifyToken, wifiController.sendWifis);
 
 wifiRoute.get("wifis/:id", verifyToken, wifiController.sendWifiById);
 
+wifiRoute.post("/wifis", verifyToken, wifiController.newWifi);
+
+wifiRoute.delete("/wifis/:id", verifyToken, wifiController.removeWifi);
+
 export default wifiRoute;

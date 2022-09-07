@@ -17,3 +17,21 @@ export async function sendWifiById(req: Request, res: Response) {
 
 	res.status(200).send(wifis);
 }
+
+export async function newWifi(req: Request, res: Response) {
+	const data = req.body;
+	const { id: userId } = res.locals.tokenDecoded;
+
+	await wifiService.newWifi({ ...data, userId });
+
+	res.sendStatus(201);
+}
+
+export async function removeWifi(req: Request, res: Response) {
+	const { id: userId } = res.locals.tokenDecoded;
+	const { id } = req.params;
+
+	await wifiService.removeWifi(Number(id), userId);
+
+	res.sendStatus(202);
+}

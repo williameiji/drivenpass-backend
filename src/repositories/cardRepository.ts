@@ -12,7 +12,7 @@ export async function getCardById(id: number): Promise<cards> {
 }
 
 export async function getCardByTitle(userId: number, title: string) {
-	return await prisma.credentials.findMany({ where: { title, userId } });
+	return await prisma.cards.findMany({ where: { title, userId } });
 }
 
 export async function insert(newCard: TypeNewCard) {
