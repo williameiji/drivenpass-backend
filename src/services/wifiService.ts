@@ -24,14 +24,6 @@ export async function findWifiById(id: number, userId: number) {
 export async function newWifi(data: wifiRepository.TypeNewWifi) {
 	const cryptr = new Cryptr(process.env.SECRET);
 
-	const wifi = await wifiRepository.getWifiByTitle(data.userId, data.title);
-
-	if (wifi.length)
-		throw {
-			code: "Conflict",
-			message: "Já existe uma credencial com esse nome!",
-		};
-
 	await wifiRepository.insert({
 		...data,
 		password: cryptr.encrypt(data.password),

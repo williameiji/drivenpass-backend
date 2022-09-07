@@ -21,7 +21,7 @@ export async function findNoteById(id: number, userId: number) {
 export async function newNote(data: noteRepository.TypeNewNote) {
 	const note = await noteRepository.getNoteByTitle(data.userId, data.title);
 
-	if (note)
+	if (note.length)
 		throw {
 			code: "Conflict",
 			message: "Já existe uma nota com esse nome!",

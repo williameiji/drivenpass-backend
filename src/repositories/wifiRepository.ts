@@ -11,10 +11,6 @@ export async function getWifiById(id: number) {
 	return await prisma.wifis.findUnique({ where: { id } });
 }
 
-export async function getWifiByTitle(userId: number, title: string) {
-	return await prisma.wifis.findMany({ where: { title, userId } });
-}
-
 export async function insert(newWifi: TypeNewWifi) {
 	await prisma.wifis.create({ data: newWifi });
 }

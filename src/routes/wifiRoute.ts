@@ -6,7 +6,7 @@ const wifiRoute = Router();
 
 wifiRoute.get("/wifis", verifyToken, wifiController.sendWifis);
 
-wifiRoute.get("wifis/:id", verifyToken, wifiController.sendWifiById);
+wifiRoute.get("/wifis/:id", verifyToken, wifiController.sendWifiById);
 
 wifiRoute.post("/wifis", verifyToken, wifiController.newWifi);
 
