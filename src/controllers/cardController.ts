@@ -22,7 +22,11 @@ export async function newCard(req: Request, res: Response) {
 	const data = req.body;
 	const { id: userId } = res.locals.tokenDecoded;
 
-	await cardService.newCard({ ...data, userId });
+	await cardService.newCard({
+		...data,
+		userId,
+		isVirtual: Boolean(data.isVirtual),
+	});
 
 	res.sendStatus(201);
 }

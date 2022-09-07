@@ -8,6 +8,7 @@ const cardSchema = joi.object({
 	date: joi.string().min(5).max(5).required(),
 	password: joi.string().required(),
 	type: joi.any().valid("crédito", "débito", "ambos").required(),
+	isVirtual: joi.any().valid("true", "false").required(),
 });
 
 export default cardSchema;
